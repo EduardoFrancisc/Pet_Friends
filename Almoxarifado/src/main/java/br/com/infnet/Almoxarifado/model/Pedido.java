@@ -19,6 +19,8 @@ public class Pedido {
     private Integer quantidade;
     @Enumerated(EnumType.STRING)
     private PedidoStatus status;
+    @Embedded
     private Endereco endereco;
+    @ElementCollection
     private List<ItemPedido> itens;
 }
