@@ -2,7 +2,11 @@ package br.com.infnet.Almoxarifado.model;
 
 import br.com.infnet.Almoxarifado.enums.PedidoStatus;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.util.List;
 
 import java.util.List;
 
@@ -15,8 +19,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String produto;
-    private Integer quantidade;
+    private String cliente;
     @Enumerated(EnumType.STRING)
     private PedidoStatus status;
     @Embedded
