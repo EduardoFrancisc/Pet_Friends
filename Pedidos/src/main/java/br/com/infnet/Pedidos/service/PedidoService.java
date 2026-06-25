@@ -1,5 +1,6 @@
 package br.com.infnet.Pedidos.service;
 
+import br.com.infnet.Pedidos.dto.DimensoesDTO;
 import br.com.infnet.Pedidos.dto.EnderecoRequestDTO;
 import br.com.infnet.Pedidos.dto.ItemPedidoRequestDTO;
 import br.com.infnet.Pedidos.dto.PedidoRequestDTO;
@@ -55,7 +56,7 @@ public class PedidoService {
         pedidoEventProducer.enviarPedidoParaAlmoxarifado(event);
     }
 
-    public void enviarTransporte(Pedido pedido, br.com.infnet.Pedidos.dto.DimensoesDTO dimensoes) {
+    public void enviarTransporte(Pedido pedido, DimensoesDTO dimensoes) {
         PedidoCriadoEventTransporte transporteEvent = PedidoCriadoEventTransporte.builder()
                 .pedidoId(pedido.getId())
                 .enderecoId(pedido.getId())
@@ -89,6 +90,7 @@ public class PedidoService {
                 .build();
 
         pedido = pedidoRepository.save(pedido);
+        System.out.println("Pedido salvo com ID: " + pedido.getId());
 
         enviarAlmoxarifado(pedido);
         enviarTransporte(pedido, dto.getDimensoes());
